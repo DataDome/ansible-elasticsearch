@@ -37,10 +37,13 @@
 ################################################################
 
 ## GC configuration
+{% if gc_config is defined %}
+{{ gc_config }}
+{% else %}
 -XX:+UseConcMarkSweepGC
 -XX:CMSInitiatingOccupancyFraction=75
 -XX:+UseCMSInitiatingOccupancyOnly
-
+{% endif %}
 ## optimizations
 
 # pre-touch memory pages used by the JVM during initialization
