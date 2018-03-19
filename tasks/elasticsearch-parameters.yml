@@ -66,7 +66,7 @@
 #For directories we also use the {{inventory_hostname}}-{{ es_instance_name }} - this helps if we have a shared SAN.
 
 - name: set fact instance_suffix
-  set_fact: instance_suffix={{inventory_hostname}}-{{ es_instance_name }}
+  set_fact: instance_suffix={{ansible_hostname}}-{{ es_instance_name }}
 - name: set fact pid_dir
   set_fact: pid_dir={{ es_pid_dir }}/{{instance_suffix}}
 - name: set fact log_dir
