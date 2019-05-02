@@ -53,7 +53,7 @@
   when: ansible_os_family == 'RedHat'
 
 - lineinfile:
-    path: "/etc/sysconfig/main_elasticsearch"
+    path: "{{ instance_default_file }}"
     line: "JAVA_HOME={{ item.stdout }}"
     create: yes
   with_items:
