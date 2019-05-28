@@ -44,22 +44,6 @@
   when: ansible_os_family == 'RedHat' and not use_system_d
   notify: restart elasticsearch
 
-- name: Get the installed java path
-  shell: "echo $(dirname $(dirname $(readlink -f $(which java))))"
-  become: yes
-  register: java_full_path
-  failed_when: False
-  changed_when: False
-  when: ansible_os_family == 'RedHat'
-
-- lineinfile:
-    path: "{{ instance_default_file }}"
-    line: "JAVA_HOME={{ item.stdout }}"
-    create: yes
-  with_items:
-    - "{{ java_full_path }}"
-  notify: restart elasticsearch
-
 #Copy the systemd specific file if systemd is installed
 - name: Copy Systemd File for Instance
   become: yes
