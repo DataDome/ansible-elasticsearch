@@ -54,6 +54,7 @@
 
 - name: Install x-pack plugin from elastic.co
   become: yes
+  ignore_errors: yes
   command: >
     {{es_home}}/bin/elasticsearch-plugin install --silent --batch x-pack
   register: xpack_state
