@@ -25,7 +25,7 @@
 
 - name: RedHat - Install Elasticsearch from url
   become: yes
-  yum: name={% if es_custom_package_url is defined %}{{ es_custom_package_url }}{% else %}{{ es_package_url }}-{{ es_version }}.noarch.rpm{% endif %} state=present
+  yum: name={% if es_custom_package_url is defined %}{{ es_custom_package_url }}{% else %}{{ es_package_url }}-{{ es_version }}-x86_64.rpm{% endif %} state=present
   when: not es_use_repository
   register: elasticsearch_install_from_package
   notify: restart elasticsearch
