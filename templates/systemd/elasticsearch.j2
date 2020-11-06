@@ -5,7 +5,6 @@ Wants=network-online.target
 After=network-online.target
 
 [Service]
-Restart=always
 Environment=ES_HOME={{es_home}}
 Environment=CONF_DIR={{conf_dir}}
 Environment=ES_PATH_CONF={{conf_dir}}
@@ -72,6 +71,14 @@ SendSIGKILL=no
 
 # When a JVM receives a SIGTERM signal it exits with code 143
 SuccessExitStatus=143
+
+# Restart logic
+# Restart it when failing
+Restart=on-failure
+# Change the service as failed after this number of restart during an interval of time
+StartLimitBurst=3
+# Interval of the StartLimitBurst
+StartLimitIntervalSec=30m
 
 [Install]
 WantedBy=multi-user.target
